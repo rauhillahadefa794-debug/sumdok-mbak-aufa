@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Selamat Sumpah Dokter, dr. Aufa!</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --cream: #faf6f0;
+    --warm-white: #fffdf8;
+    --blush: #e8c4b0;
+    --rose: #c97a6a;
+    --deep-rose: #9b4f42;
+    --forest: #4a6741;
+    --sage: #8aab84;
+    --gold: #c9a84c;
+    --deep-gold: #8b6914;
+    --dark: #1e1a16;
+    --mid: #5a4d3e;
+    --light-mid: #a08070;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--dark);
+    font-family: 'Lora', serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ── FLOATING PARTICLES ── */
+  .particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatUp linear infinite;
+  }
+
+  @keyframes floatUp {
+    0%   { opacity: 0; transform: translateY(100vh) scale(0.5) rotate(0deg); }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.3; }
+    100% { opacity: 0; transform: translateY(-100px) scale(1) rotate(360deg); }
+  }
+
+  /* ── HERO SECTION ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 60px 24px;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 50% 40%, rgba(201,120,106,0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 80% 20%, rgba(138,171,132,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,168,76,0.08) 0%, transparent 60%),
+      var(--cream);
+    z-index: 0;
+  }
+
+  /* cross-hatch texture */
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(0,0,0,0.012) 60px, rgba(0,0,0,0.012) 61px),
+      repeating-linear-gradient(-45deg, transparent, transparent 60px, rgba(0,0,0,0.012) 60px, rgba(0,0,0,0.012) 61px);
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+  }
+
+  /* stethoscope deco */
+  .steth-deco {
+    font-size: 52px;
+    margin-bottom: 16px;
+    display: block;
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+
+  .tag-line {
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: var(--rose);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    animation: fadeSlideDown 1s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 6vw, 54px);
+    color: var(--mid);
+    line-height: 1.15;
+    margin-bottom: 8px;
+    animation: fadeSlideDown 1s 0.2s ease both;
+  }
+
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(52px, 13vw, 110px);
+    color: var(--deep-rose);
+    line-height: 1;
+    margin-bottom: 12px;
+    animation: fadeSlideDown 1s 0.4s ease both;
+    letter-spacing: -1px;
+  }
+
+  .hero-dr {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(22px, 4vw, 36px);
+    color: var(--forest);
+    letter-spacing: 4px;
+    margin-bottom: 32px;
+    animation: fadeSlideDown 1s 0.6s ease both;
+  }
+
+  .hero-date {
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: var(--light-mid);
+    letter-spacing: 2px;
+    margin-bottom: 48px;
+    animation: fadeSlideDown 1s 0.8s ease both;
+  }
+
+  .scroll-hint {
+    font-family: 'Caveat', cursive;
+    font-size: 14px;
+    color: var(--light-mid);
+    animation: bounce 2s ease infinite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  /* Divider ornament */
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  .orn-line {
+    flex: 1;
+    max-width: 180px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .orn-diamond {
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 80px 24px;
+  }
+
+  .section-inner {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    color: var(--rose);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(28px, 5vw, 44px);
+    color: var(--dark);
+    margin-bottom: 32px;
+    line-height: 1.2;
+  }
+
+  /* ── DOA CARDS ── */
+  .doa-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .doa-card {
+    background: var(--warm-white);
+    border: 1px solid rgba(201,168,76,0.25);
+    border-left: 4px solid var(--gold);
+    padding: 28px 28px 28px 32px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .doa-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .doa-card:nth-child(2) { border-left-color: var(--rose); transition-delay: 0.15s; }
+  .doa-card:nth-child(3) { border-left-color: var(--forest); transition-delay: 0.3s; }
+  .doa-card:nth-child(4) { border-left-color: var(--deep-rose); transition-delay: 0.45s; }
+  .doa-card:nth-child(5) { border-left-color: var(--sage); transition-delay: 0.6s; }
+
+  .doa-number {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 60px;
+    font-weight: 300;
+    color: rgba(0,0,0,0.05);
+    line-height: 1;
+  }
+
+  .doa-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .doa-text {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--mid);
+  }
+
+  .doa-text em {
+    font-style: italic;
+    color: var(--deep-rose);
+    font-size: 18px;
+  }
+
+  /* ── MESSAGE SECTION ── */
+  .message-section {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 80px 24px;
+  }
+
+  .message-section .section-title {
+    color: var(--cream);
+  }
+
+  .message-section .section-tag {
+    color: var(--gold);
+  }
+
+  .message-body {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: clamp(20px, 3.5vw, 30px);
+    line-height: 1.7;
+    color: rgba(250,246,240,0.85);
+    margin-bottom: 32px;
+    position: relative;
+    padding-left: 28px;
+    border-left: 2px solid var(--gold);
+  }
+
+  .message-sub {
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: var(--light-mid);
+    line-height: 1.8;
+  }
+
+  /* ── SPECIAL NOTE - jajan ── */
+  .jajan-section {
+    background: var(--warm-white);
+    padding: 80px 24px;
+  }
+
+  .jajan-card {
+    background: var(--cream);
+    border: 2px dashed var(--blush);
+    border-radius: 2px;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .jajan-card::before {
+    content: '';
+    position: absolute;
+    top: -20px; left: -20px;
+    width: 80px; height: 80px;
+    background: var(--blush);
+    opacity: 0.15;
+    border-radius: 50%;
+  }
+
+  .jajan-card::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 100px; height: 100px;
+    background: var(--sage);
+    opacity: 0.1;
+    border-radius: 50%;
+  }
+
+  .jajan-emoji {
+    font-size: 48px;
+    display: block;
+    margin-bottom: 16px;
+    animation: wiggle 2.5s ease-in-out infinite;
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+
+  .jajan-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 600;
+    font-size: clamp(24px, 4.5vw, 40px);
+    color: var(--deep-rose);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .jajan-text {
+    font-family: 'Lora', serif;
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--mid);
+    max-width: 500px;
+    margin: 0 auto 24px;
+  }
+
+  .jajan-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .jajan-pill {
+    background: var(--blush);
+    color: var(--deep-rose);
+    font-family: 'Caveat', cursive;
+    font-size: 16px;
+    padding: 6px 18px;
+    border-radius: 999px;
+    animation: popIn 0.5s ease both;
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .jajan-pill:nth-child(2) { animation-delay: 0.1s; }
+  .jajan-pill:nth-child(3) { animation-delay: 0.2s; }
+  .jajan-pill:nth-child(4) { animation-delay: 0.3s; }
+  .jajan-pill:nth-child(5) { animation-delay: 0.4s; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+  }
+
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(36px, 8vw, 72px);
+    font-weight: 300;
+    color: rgba(250,246,240,0.15);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+  }
+
+  .footer-text {
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    color: var(--gold);
+    letter-spacing: 2px;
+  }
+
+  .footer-sub {
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    color: rgba(250,246,240,0.35);
+    margin-top: 12px;
+  }
+
+  /* ── CONFETTI BURST ── */
+  .confetti-btn {
+    background: none;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Caveat', cursive;
+    font-size: 18px;
+    padding: 12px 32px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    margin-top: 32px;
+    transition: background 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .confetti-btn:hover {
+    background: var(--gold);
+    color: var(--dark);
+  }
+
+  .confetti-piece {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: confettiFall 3s ease-in forwards;
+  }
+
+  @keyframes confettiFall {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ── PHOTO ── */
+  .photo-section {
+    padding: 60px 24px;
+    text-align: center;
+    background: var(--cream);
+  }
+
+  .photo-frame {
+    display: inline-block;
+    padding: 12px 12px 48px;
+    background: var(--warm-white);
+    border: 1px solid rgba(0,0,0,0.1);
+    transform: rotate(-1.5deg);
+    box-shadow: 4px 4px 20px rgba(0,0,0,0.08);
+    max-width: 340px;
+    position: relative;
+  }
+
+  .photo-frame img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center 20%;
+    filter: sepia(0.1) contrast(1.03);
+    display: block;
+  }
+
+  .photo-caption {
+    position: absolute;
+    bottom: 12px;
+    left: 0; right: 0;
+    font-family: 'Caveat', cursive;
+    font-size: 15px;
+    color: var(--mid);
+    text-align: center;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (min-width: 600px) {
+    .doa-grid { grid-template-columns: 1fr 1fr; }
+    .doa-card:nth-child(5) { grid-column: 1 / -1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Floating particles -->
+<div class="particles" id="particles"></div>
+
+<!-- ══ HERO ══ -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <span class="steth-deco">🩺</span>
+    <div class="tag-line">✦ Dengan bangga, kami mengucapkan ✦</div>
+    <div class="hero-title">Selamat Mengucap</div>
+    <div class="hero-name">Sumpah Dokter</div>
+    <div class="hero-dr">dr. Aufa</div>
+
+    <div class="ornament">
+      <div class="orn-line"></div>
+      <div class="orn-diamond"></div>
+      <div class="orn-line"></div>
+    </div>
+
+    <div class="hero-date">✦ Hari yang luar biasa & penuh berkah ✦</div>
+
+    <div class="scroll-hint">
+      <span>scroll ke bawah</span>
+      <span>↓</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PHOTO SECTION ══ -->
+<div class="photo-section">
+  <div class="photo-frame">
+    <img src="Untitled_design__22_.png" alt="dr. Aufa" onerror="this.parentElement.style.display='none'"/>
+    <div class="photo-caption">dr. Aufa — masa depan yang cerah ✨</div>
+  </div>
+</div>
+
+<!-- ══ DOA SECTION ══ -->
+<section>
+  <div class="section-inner">
+    <span class="section-tag fade-in">✦ Doa & Harapan ✦</span>
+    <h2 class="section-title fade-in">Untukmu, Mbak Aufa<br>yang kami cintai</h2>
+
+    <div class="doa-grid">
+
+      <div class="doa-card fade-in">
+        <span class="doa-number">01</span>
+        <span class="doa-icon">🤲</span>
+        <p class="doa-text">
+          Semoga mbak Aufa menjadi dokter yang
+          <em>amanah dan penuh integritas</em> —
+          yang mengobati bukan hanya raga, tapi juga memberi ketenangan bagi setiap pasien dan keluarganya.
+        </p>
+      </div>
+
+      <div class="doa-card fade-in">
+        <span class="doa-number">02</span>
+        <span class="doa-icon">💚</span>
+        <p class="doa-text">
+          Semoga setiap langkah pengabdian mbak menjadi
+          <em>ladang pahala</em> yang mengalir tiada henti,
+          dan ilmu yang dimiliki menjadi cahaya bagi banyak orang.
+        </p>
+      </div>
+
+      <div class="doa-card fade-in">
+        <span class="doa-number">03</span>
+        <span class="doa-icon">🌟</span>
+        <p class="doa-text">
+          Semoga karier mbak selalu dilapangkan,
+          dilindungi dari segala kesulitan,
+          dan <em>nama dr. Aufa menjadi nama yang dipercaya</em>
+          oleh banyak jiwa yang membutuhkan pertolongan.
+        </p>
+      </div>
+
+      <div class="doa-card fade-in">
+        <span class="doa-number">04</span>
+        <span class="doa-icon">🏠</span>
+        <p class="doa-text">
+          Semoga mbak selalu sehat, bahagia,
+          dan <em>rezekinya makin berlimpah</em> —
+          cukup untuk diri sendiri, keluarga,
+          dan masih sisa banyak buat adeknya yang minta jajan.
+        </p>
+      </div>
+
+      <div class="doa-card fade-in">
+        <span class="doa-number">05</span>
+        <span class="doa-icon">🍜</span>
+        <p class="doa-text">
+          Dan yang paling penting — semoga mbak Aufa
+          <em>sering-sering ngasihin adeknya jajan sama uang jajan</em>,
+          karena dokter yang baik itu dimulai dari
+          menjadi kakak yang baik dulu kan? Hehe 🥺❤️
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ MESSAGE SECTION ══ -->
+<div class="message-section">
+  <div class="section-inner">
+    <span class="section-tag fade-in">✦ Dari Hati ✦</span>
+    <h2 class="section-title fade-in">Sebuah Pesan Kecil</h2>
+    <p class="message-body fade-in">
+      "Mbak sudah melewati jalan yang panjang dan berat.
+      Tapi hari ini, semua jerih payah itu terbayar lunas.
+      Kami bangga sekali melihat mbak berdiri di sini —
+      dr. Aufa, dokter kami."
+    </p>
+    <p class="message-sub fade-in">
+      Selamat mengemban sumpah yang mulia. 🌿<br>
+      Semoga Allah selalu menjaga dan memberkahi setiap langkahmu.
+    </p>
+  </div>
+</div>
+
+<!-- ══ JAJAN SECTION ══ -->
+<div class="jajan-section">
+  <div class="section-inner">
+    <div class="jajan-card fade-in">
+      <span class="jajan-emoji">🍡</span>
+      <h3 class="jajan-title">Perjanjian Resmi<br>antara Dokter & Adek</h3>
+      <p class="jajan-text">
+        Sebagai dokter yang kini berpenghasilan halal dan berkah,
+        mbak Aufa diwajibkan secara moral (dan mungkin hukum karma)
+        untuk secara rutin menyejahterakan adeknya melalui:
+      </p>
+      <div class="jajan-items">
+        <span class="jajan-pill">🧋 Boba kekinian</span>
+        <span class="jajan-pill">🍜 Mie Ayam favorit</span>
+        <span class="jajan-pill">🍕 Pizza sesekali</span>
+        <span class="jajan-pill">💸 Uang jajan</span>
+        <span class="jajan-pill">🛍️ Oleh-oleh random</span>
+      </div>
+      <p class="jajan-text" style="font-style:italic; color: var(--deep-rose); font-size:15px;">
+        *Syarat & ketentuan berlaku. Adek tidak bertanggung jawab atas ekspresi muka mbak saat baca ini.*
+      </p>
+      <button class="confetti-btn" onclick="launchConfetti()">
+        🎉 Rayakan Bersama!
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="ornament" style="margin-bottom: 32px;">
+    <div class="orn-line" style="background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);"></div>
+    <div class="orn-diamond" style="background: var(--gold);"></div>
+    <div class="orn-line" style="background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);"></div>
+  </div>
+  <div class="footer-name">dr. Aufa</div>
+  <div class="footer-text">✦ Selamat Sumpah Dokter ✦</div>
+  <p class="footer-sub">Dengan cinta & sedikit keinginan dapat jajan gratis 🥺</p>
+</footer>
+
+<script>
+/* ── PARTICLES ── */
+(function(){
+  const container = document.getElementById('particles');
+  const colors = ['#e8c4b0','#c9a84c','#8aab84','#c97a6a','#ddd8cf'];
+  for(let i = 0; i < 25; i++){
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const size = Math.random() * 6 + 3;
+    p.style.cssText = `
+      width:${size}px; height:${size}px;
+      left:${Math.random()*100}%;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${Math.random()*18+12}s;
+      animation-delay:${Math.random()*10}s;
+    `;
+    container.appendChild(p);
+  }
+})();
+
+/* ── SCROLL FADE-IN ── */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in, .doa-card').forEach(el => observer.observe(el));
+
+/* ── CONFETTI ── */
+function launchConfetti(){
+  const colors = ['#c97a6a','#c9a84c','#8aab84','#e8c4b0','#9b4f42','#4a6741','#faf6f0'];
+  for(let i = 0; i < 80; i++){
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.cssText = `
+      left:${Math.random()*100}vw;
+      top:${Math.random()*30 + 30}vh;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-delay:${Math.random()*1.5}s;
+      animation-duration:${Math.random()*2+2}s;
+      transform:rotate(${Math.random()*360}deg);
+      border-radius:${Math.random() > 0.5 ? '50%' : '2px'};
+    `;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 5000);
+  }
+}
+</script>
+</body>
+</html>
